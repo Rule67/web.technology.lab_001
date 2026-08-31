@@ -29,6 +29,12 @@ export default defineConfig((/* ctx */) => {
       'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
     ],
+    
+      quasar: {
+        plugins: [
+          'Notify'
+      ]
+    },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
