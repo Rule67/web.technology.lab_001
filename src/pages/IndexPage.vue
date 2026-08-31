@@ -11,7 +11,7 @@
         label="Your name *"
         hint="Name and surname"
         lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Please type something']"
+        :rules="[val => (val && val.trim().length > 0) || 'Please type something']"
       />
       <q-input
         filled
@@ -20,13 +20,17 @@
         label="Your age *"
         lazy-rules
         :rules="[
-          val => val !== null && val !== '' || 'Please type your age',
-          val => val > 0 && val < 100 || 'Please type a real age'
+          val => (val !== null && val !== '') || 'Please type your age',
+          val => Number(val) > 0 && Number(val) < 100 || 'Please type a real age'
         ]"
       />
-      <q-toggle v-model="accept" label="I accept the license and terms" />
+      <q-toggle
+        v-model="accept"
+        label="I accept the license and terms"
+        :rules="[val => !!val || 'You need to accept the license and terms first']"
+      />
       <div>
-        <q-btn label="Submit" type="submit" color="primary"/>
+        <q-btn label="Submit" type="submit" color="primary" />
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
@@ -44,6 +48,7 @@ export default {
     const name = ref(null)
     const age = ref(null)
     const accept = ref(false)
+
     return {
       name,
       age,
@@ -56,15 +61,15 @@ export default {
             icon: 'warning',
             message: 'You need to accept the license and terms first'
           })
+          return
         }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted'
-          })
-        }
+
+        $q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Submitted'
+        })
       },
       onReset () {
         name.value = null
@@ -75,3 +80,4 @@ export default {
   }
 }
 </script>
+

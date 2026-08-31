@@ -29,12 +29,6 @@ export default defineConfig((/* ctx */) => {
       'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
     ],
-    
-      quasar: {
-        plugins: [
-          'Notify'
-      ]
-    },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
@@ -46,7 +40,7 @@ export default defineConfig((/* ctx */) => {
       // https://v2.quasar.dev/quasar-cli-vite/page-routing-with-vue-router#filename-based-routing
       // filenameBasedRouting: true,
 
-      vueRouterMode: 'hash' // available values: 'hash', 'history'
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
 
@@ -68,7 +62,7 @@ export default defineConfig((/* ctx */) => {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
       // https: true,
-      open: true // opens browser window automatically
+      open: false // disable automatic browser launch
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
